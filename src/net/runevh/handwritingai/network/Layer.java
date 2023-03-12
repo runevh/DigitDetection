@@ -1,5 +1,6 @@
 package net.runevh.handwritingai.network;
 
+import net.runevh.handwritingai.math.Matrix;
 import net.runevh.handwritingai.math.Vector2;
 import net.runevh.handwritingai.network.functions.Activation;
 
@@ -8,8 +9,11 @@ public class Layer {
     private Vector2 result = new Vector2(0, 0);
     private Activation activation;
 
-    double weights;
-    double bias;
+    private double learningRate;
+
+    Matrix weights;
+    Matrix deltaWeights;
+    Vector2 bias;
 
     public Vector2 evaluate(Vector2 vec){
         result = vec;
@@ -21,6 +25,19 @@ public class Layer {
 
     public Vector2 getResult() {
         return result;
+    }
+
+    public Layer getPrev() {
+        return prev;
+    }
+
+    public void updateWeights(Matrix dCostDWeights){
+        weights.subtract(dCostDWeights.multiply(learningRate));
+
+    }
+
+    public void updateWeightsAndBias(){
+
     }
 
     public boolean hasPreLayer(){

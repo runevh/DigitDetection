@@ -70,6 +70,21 @@ public class Matrix {
 
     /**
      * @param x scalar
+     * @return the matrix mutliplied with a scalar
+     */
+    public Matrix multiply(double x) {
+
+        for (int i = 0; i < getRows(); i++) {
+            for (int j = 0; j < getColumns(); j++) {
+                set(i, j, get(i, j) * x);
+            }
+        }
+
+        return this;
+    }
+
+    /**
+     * @param x scalar
      * @return the matrix with and added scalar
      */
     public Matrix add(double x) {

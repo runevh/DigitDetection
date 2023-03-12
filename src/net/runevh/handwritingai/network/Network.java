@@ -1,5 +1,6 @@
 package net.runevh.handwritingai.network;
 
+import net.runevh.handwritingai.math.Matrix;
 import net.runevh.handwritingai.math.Vector2;
 import net.runevh.handwritingai.network.functions.Cost;
 
@@ -36,7 +37,9 @@ public class Network {
         Vector2 dCost = Cost.getDerivative(expected, layer.getResult());
 
         while(layer.hasPreLayer()){
-            Vector2 dCostDI = layer.getActivation().
+            Vector2 dCostDI = layer.getActivation().dCostDInput(layer.getResult(), dCost);
+            Matrix dCostDWeight = dCostDI.outerProduct(layer.getPrev().getResult());
+
         }
     }
 

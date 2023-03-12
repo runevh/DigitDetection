@@ -1,6 +1,9 @@
 package net.runevh.handwritingai.network.functions;
 
+import net.runevh.handwritingai.math.Vector2;
+
 import java.time.format.TextStyle;
+import java.util.Vector;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
@@ -23,6 +26,12 @@ public enum Activation {
         this.diffFunction = diffFunction;
     }
 
+    public Vector2 dCostDInput(Vector2 out, Vector2 cost){
+        double x = getDerFunction().apply(out.x) * cost.x;
+        double y = getDerFunction().apply(out.y) * cost.y;
+        return new Vector2(x, y);
+    }
+
     public String getName() {
         return name;
     }
@@ -31,7 +40,7 @@ public enum Activation {
         return function;
     }
 
-    public Function<Double, Double> getDiffFunction() {
+    public Function<Double, Double> getDerFunction() {
         return diffFunction;
     }
 }

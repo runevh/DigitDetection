@@ -45,8 +45,20 @@ public class Vector2 {
         return this.x * vec.x + this.y * vec.y;
     }
 
-    public Vector2 outerProduct(Vector2 vec){
+    public double[] toArray(){
+        return new double[]{x, y};
+    }
 
+    public Matrix outerProduct(Vector2 vec){
+        double[] u = toArray();
+        double[] v = vec.toArray();
+        double[][] a = new double[u.length][v.length];
+        for(int i = 0; i < u.length; i++){
+            for(int j = 0; j < v.length; j++){
+                a[i][j] = u[i]*v[j];
+            }
+        }
+        return new Matrix(a);
     }
 
     //https://en.wikipedia.org/wiki/Outer_product
