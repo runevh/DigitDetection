@@ -16,7 +16,7 @@ public class Network {
         layers.add(layer);
     }
 
-    public void evaluate(Vector2 input, Vector2 expected){
+    public Result evaluate(Vector2 input, Vector2 expected){
         Vector2 currentSignal = input;
         for(Layer layer : layers){
             currentSignal = layer.evaluate(currentSignal);
@@ -40,6 +40,9 @@ public class Network {
             Vector2 dCostDI = layer.getActivation().dCostDInput(layer.getResult(), dCost);
             Matrix dCostDWeight = dCostDI.outerProduct(layer.getPrev().getResult());
 
+            layer.addDWB(dCostDWeight, dCostDI);
+            dCost = layer.getWeights().multiply(dCostDI);
+            layer = layer.getPrev();
         }
     }
 

@@ -41,12 +41,36 @@ public class Vector2 {
         return this;
     }
 
+    public Vector2 multiply(Matrix m){
+        for (int j = 0; j < m.getColumns(); j++) {
+            double sum = 0.0;
+            for (int i = 0; i < m.getRows(); i++) {
+                sum += this.get(i) * m.get(i, j);
+            }
+            this.set(j, sum);
+        }
+
+        return this;
+    }
+
     public double dotProduct(Vector2 vec){
         return this.x * vec.x + this.y * vec.y;
     }
 
     public double[] toArray(){
         return new double[]{x, y};
+    }
+
+    public double get(int i){
+        return toArray()[i];
+    }
+
+    public void set(int i, double v){
+        if(i == 0){
+            x = v;
+        } else if(i == 1){
+            y = v;
+        }
     }
 
     public Matrix outerProduct(Vector2 vec){
@@ -61,6 +85,9 @@ public class Vector2 {
         return new Matrix(a);
     }
 
+    public Vector2 copy(){
+        return new Vector2(this.x, this.y);
+    }
     //https://en.wikipedia.org/wiki/Outer_product
 
 }

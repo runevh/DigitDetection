@@ -13,4 +13,9 @@ public class Result {
         this.signal = signal;
         this.cost = cost;
     }
+
+    public Result(Vector2 signal) {
+        this.signal = signal;
+        this.cost = Double.NaN;
+    }
 }

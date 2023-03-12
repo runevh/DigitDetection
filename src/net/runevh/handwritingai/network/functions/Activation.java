@@ -1,5 +1,6 @@
 package net.runevh.handwritingai.network.functions;
 
+import net.runevh.handwritingai.math.Matrix;
 import net.runevh.handwritingai.math.Vector2;
 
 import java.time.format.TextStyle;
@@ -42,5 +43,9 @@ public enum Activation {
 
     public Function<Double, Double> getDerFunction() {
         return diffFunction;
+    }
+
+    public Vector2 calcFunction(Vector2 vec){
+        return new Vector2(getFunction().apply(vec.x), getFunction().apply(vec.y));
     }
 }

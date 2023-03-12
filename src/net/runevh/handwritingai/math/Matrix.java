@@ -52,6 +52,30 @@ public class Matrix {
     }
 
     /**
+     * @param v vector to multiply
+     * @return the matrix multiplied with a vector
+     */
+    public Vector2 multiply(Vector2 v) {
+
+        if (getColumns() != 2) {
+            throw new RuntimeException("Can't multiply this matrix. (Rows not equal to columns)");
+        }
+
+        Vector2 res = new Vector2(0, 0);
+
+        for (int i = 0; i < getRows(); i++) {
+            double dotProduct = 0;
+            for (int j = 0; j < getColumns(); j++) {
+                dotProduct += get(i, j) * v.get(j);
+            }
+            res.set(i, dotProduct);
+        }
+
+        return res;
+
+    }
+
+    /**
      * @param m matrix to add
      * @return two matrices added
      */
