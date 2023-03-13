@@ -90,4 +90,15 @@ public class Vector2 {
     }
     //https://en.wikipedia.org/wiki/Outer_product
 
+    public static ArrayList<Double> toList(){
+        List<Double> list = new ArrayList<Double>();
+        list.add(x);
+        list.add(y);
+        return list;
+    }
+
+    public static double getAverage(){
+        return (x+y)/2;
+    }
+
 }

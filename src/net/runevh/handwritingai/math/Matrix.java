@@ -160,6 +160,25 @@ public class Matrix {
         return new Matrix(r);
     }
 
+    public static ArrayList<Double> toList(){
+        List<Double> list = new ArrayList<Double>();
+        for(int i = 0; i < getRows(); i++){
+            for(int j = 0; j < getColumns(); j++){
+                list.add(get(i, j));
+            }
+        }
 
+        return list;
+    }
+
+    public static double getAverage(){
+        ArrayList<Double> list = toList();
+        double sum = 0;
+        for(double d : list){
+            sum += d;
+        }
+
+        return sum/list.size();
+    }
 
 }
