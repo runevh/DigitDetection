@@ -43,7 +43,9 @@ public class Layer {
     }
 
     public void addDWB(Matrix dWeight, Vector2 dBias){
-
+        //TODO: Gradient weight
+        this.deltaWeights = deltaWeights.add(dWeight.multiply(learningRate));
+        this.deltaBias = deltaBias.add(dBias.multiply(learningRate));
     }
 
     public void updateWeightsAndBias(){
