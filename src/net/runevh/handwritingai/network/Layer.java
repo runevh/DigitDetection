@@ -46,8 +46,8 @@ public class Layer {
         this.deltaWeights = deltaWeights.add(dWeight);
         this.deltaBias = deltaBias.add(dBias);
 
-        this.deltaWeightsAdded = deltaWeights.getAverage();
-        this.deltaBiasAdded = deltaBias.getAverage();
+        this.deltaWeightsAdded++;
+        this.deltaBiasAdded++;
 
         updateWeightsAndBias();
     }
