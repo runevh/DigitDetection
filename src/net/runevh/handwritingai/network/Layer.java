@@ -18,6 +18,10 @@ public class Layer {
     Vector2 deltaBias;
     double deltaBiasAdded;
 
+    public(Activation activation){
+        this.activation = activation;
+    }
+
     public Vector2 evaluate(Vector2 vec){
         result = vec.copy();
         if(prev != null){
@@ -42,6 +46,7 @@ public class Layer {
         bias.subtract(dCost.multiply(learningRate));
     }
 
+    //add deltaWeight and delta Bias
     public void addDWB(Matrix dWeight, Vector2 dBias){
         this.deltaWeights = deltaWeights.add(dWeight);
         this.deltaBias = deltaBias.add(dBias);

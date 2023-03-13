@@ -7,6 +7,18 @@ public class Matrix {
         this.a = a;
     }
 
+    public Matrix(int rows, int collumns){
+
+        double[][] a = new double[rows][collumns];
+        for(int i = 0; i < rows; i++){
+            for(int j = 0; j < collumns; j++){
+                a[i][j] = 0;
+            }
+        }
+
+        return new Matrix(a);
+    }
+
     public void set(double[][] a) {
         this.a = a;
     }
