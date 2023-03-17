@@ -22,7 +22,6 @@ public class DataReader {
 
             DataInputStream lIStream = new DataInputStream(new BufferedInputStream(new FileInputStream(labelPath)));
             lIStream.readInt();
-            int nLabels = lIStream.readInt();
 
             data = new DataVector[nItems];
 

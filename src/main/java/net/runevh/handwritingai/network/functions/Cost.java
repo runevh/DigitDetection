@@ -3,10 +3,10 @@ package net.runevh.handwritingai.network.functions;
 import net.runevh.handwritingai.math.Vector;
 
 public class Cost {
-    /**
-     * Cost function: Quadratic, C = ∑(y−exp)^2
-     */
 
+    /**
+     * Cost function: C = ∑(y−exp)^2
+     */
     public static double getTotal(Vector expected, Vector actual){
         Vector diff = actual.subtract(expected);
         return diff.dotProduct(diff);

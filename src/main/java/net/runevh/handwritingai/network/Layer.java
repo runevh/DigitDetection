@@ -12,7 +12,7 @@ public class Layer {
     private final Activation activation;
     private final static Random rand = new Random();
 
-    private double learningRate = 0.005;
+    private final double learningRate = 0.005;
 
     Matrix weights;
     Vector bias;
@@ -91,13 +91,6 @@ public class Layer {
 
     public boolean hasPreLayer(){
         return prev != null;
-    }
-
-    public synchronized void addDeltaWeightsAndBiases(Matrix dW, Vector dB) {
-        deltaWeights.add(dW);
-        deltaWeightsAdded++;
-        deltaBias = deltaBias.add(dB);
-        deltaBiasAdded++;
     }
 
     public Activation getActivation() {

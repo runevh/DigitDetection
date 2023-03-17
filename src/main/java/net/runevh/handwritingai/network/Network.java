@@ -7,8 +7,6 @@ import net.runevh.handwritingai.network.functions.Cost;
 
 public class Network {
 
-    private static Network instance;
-
     private final java.util.Vector<Layer> layers = new java.util.Vector<>();
 
     public void addLayer(int neurons, Activation activation){
@@ -16,7 +14,6 @@ public class Network {
     }
 
     public Network(int inputSize) {
-        instance = this;
         addLayer(inputSize, Activation.IDENTITY);
     }
 
@@ -59,9 +56,5 @@ public class Network {
 
     public java.util.Vector<Layer> getLayers() {
         return layers;
-    }
-
-    public static Network getInstance() {
-        return instance;
     }
 }

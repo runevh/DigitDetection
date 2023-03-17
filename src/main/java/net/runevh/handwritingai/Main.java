@@ -35,8 +35,7 @@ public class Main {
 
         while(true){
             int correct = apply(d0, network, true);
-            double accuracy = (100d * correct / d0.length);
-            Result.ErrorRate.lastAccuracy = accuracy;
+            Result.ErrorRate.lastAccuracy = (100d * correct / d0.length);
         }
 
         //Canvas.init();

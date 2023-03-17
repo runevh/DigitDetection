@@ -9,8 +9,6 @@ import java.util.logging.Logger;
 
 public class Result {
 
-    private static final Logger logger = Logger.getLogger(Result.class.getName());
-
     Vector signal;
     double cost;
 
@@ -66,9 +64,9 @@ public class Result {
             this.accuracy = accuracy;
             this.timeStamp = System.currentTimeMillis();
 
-            if(lastErrorRateData.size() > 50){
+            if(lastErrorRateData.size() > 50)
                 lastErrorRateData.remove(0);
-            }
+
 
             lastErrorRateData.add(this);
         }
