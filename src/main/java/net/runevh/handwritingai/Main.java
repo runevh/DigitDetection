@@ -56,8 +56,7 @@ public class Main {
                 Result result = learn ?
                         network.evaluate(img, new Vector(10).set(img.getLabel(), 1)) : network.evaluate(img, null);
 
-                if(result.getSignal().indexOfLargestElement() == img.getLabel())
-                    correct.incrementAndGet();
+                if(result.getSignal().indexOfLargestElement() == img.getLabel()) correct.incrementAndGet();
             });
 
             if (learn) network.updateFromLearning();

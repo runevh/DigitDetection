@@ -22,7 +22,7 @@ public class DataReader {
 
             DataInputStream lIStream = new DataInputStream(new BufferedInputStream(new FileInputStream(labelPath)));
             lIStream.readInt();
-
+            lIStream.readInt();
             data = new DataVector[nItems];
 
             for(int i = 0; i < nItems; i++){
