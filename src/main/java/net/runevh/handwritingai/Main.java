@@ -8,12 +8,10 @@ import net.runevh.handwritingai.network.Result;
 import net.runevh.handwritingai.network.functions.Activation;
 import net.runevh.handwritingai.ui.graphs.GraphPlotter;
 
-import javax.xml.crypto.Data;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static java.util.Collections.replaceAll;
 import static java.util.Collections.unmodifiableList;
 
 public class Main {
@@ -26,7 +24,7 @@ public class Main {
         //DataVector[] d1 = DataReader.getData("src/main/resources/train-images.idx3-ubyte", "src/main/resources/train-labels.idx1-ubyte");
 
         Network network = new Network(28*28);
-        network.addLayer(38, Activation.LEAKY_RELU);
+        network.addLayer(42, Activation.LEAKY_RELU);
         network.addLayer(12, Activation.LEAKY_RELU);
         network.addLayer(10, Activation.SOFTMAX);
 
@@ -42,14 +40,14 @@ public class Main {
     }
 
     private static List<DataVector> getBatch(int i, List<DataVector> data) {
-        int fromIx = i * BATCH_SIZE;
-        int toIx = Math.min(data.size(), (i + 1) * BATCH_SIZE);
-        return unmodifiableList(data.subList(fromIx, toIx));
+        int from = i * BATCH_SIZE;
+        int to = Math.min(data.size(), (i + 1) * BATCH_SIZE);
+        return unmodifiableList(data.subList(from, to));
     }
 
     private static int apply(DataVector[] data, Network network, boolean learn){
-        AtomicInteger correct = new AtomicInteger();
 
+        AtomicInteger correct = new AtomicInteger();
         for(int i = 0; i < data.length / BATCH_SIZE; i++){
 
             getBatch(i, Arrays.stream(data).toList()).forEach(img -> {
@@ -59,7 +57,7 @@ public class Main {
                 if(result.getSignal().indexOfLargestElement() == img.getLabel()) correct.incrementAndGet();
             });
 
-            if (learn) network.updateFromLearning();
+            if (learn) network.update();
         }
 
         return correct.get();

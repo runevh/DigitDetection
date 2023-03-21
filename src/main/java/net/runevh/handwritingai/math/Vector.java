@@ -23,13 +23,6 @@ public class Vector {
         return this;
     }
 
-    public Vector add(double x){
-        for(int i = 0; i < a.length; i++){
-            a[i] += x;
-        }
-        return this;
-    }
-
     public Vector subtract(double x){
         for(int i = 0; i < a.length; i++){
             a[i] -= x;
@@ -45,13 +38,6 @@ public class Vector {
             res[i] = a[i] - vec.a[i];
         }
         return new Vector(res);
-    }
-
-    public Vector multiply(Vector vec){
-        for(int i = 0; i < a.length; i++){
-            a[i] *= vec.a[i];
-        }
-        return this;
     }
 
     public Vector multiply(double x){
@@ -113,15 +99,6 @@ public class Vector {
 
     public Vector copy(){
         return new Vector(a);
-    }
-    //https://en.wikipedia.org/wiki/Outer_product
-
-    public double getAverage(){
-        double sum = 0;
-        for(int i = 0; i < a.length; i++){
-            sum += get(i);
-        }
-        return (sum)/a.length;
     }
 
     public String toString(){

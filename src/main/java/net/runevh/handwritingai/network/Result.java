@@ -22,10 +22,6 @@ public class Result {
         this.cost = Double.NaN;
     }
 
-    public void print(){
-        System.out.println("Result: " + signal.toString() +"\n Cost: " + cost + "\n");
-    }
-
     public Vector getSignal() {
         return signal;
     }
@@ -35,10 +31,6 @@ public class Result {
         double max = 0;
         for(int i = 0; i < signal.size(); i++){
             double x = Math.abs(signal.get(i));
-            if(x > 1){
-                x -= 1;
-            }
-
             if(x > max){
                 max = x;
                 maxI = i;

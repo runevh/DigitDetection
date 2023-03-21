@@ -16,7 +16,7 @@ public class Activation {
     public static final Activation SOFTMAX = new Activation(null, null){
 
         @Override
-        public Vector dCostDInput(Vector out, Vector c){
+        public Vector multiplyByDerivative(Vector out, Vector c){
             double x = out.elementProduct(c).totalSum();
             return out.elementProduct(c.copy().subtract(x));
         }
@@ -26,6 +26,7 @@ public class Activation {
             double[] a = vec.toArray();
             double sum = 0;
             double max = vec.getMax();
+
             for(double x : a){
                 sum += Math.exp(x - max);
             }
@@ -47,16 +48,8 @@ public class Activation {
         this.diffFunction = diffFunction;
     }
 
-    public Vector dCostDInput(Vector out, Vector cost){
-        return cost.elementProduct(calcDiffFunction(out));
-    }
-
-    public Function<Double, Double> getFunction() {
-        return function;
-    }
-
-    public Function<Double, Double> getDerFunction() {
-        return diffFunction;
+    public Vector multiplyByDerivative(Vector out, Vector vec){
+        return vec.elementProduct(calcDiffFunction(out));
     }
 
     public Vector calcFunction(Vector vec){

@@ -12,6 +12,7 @@ public class DataReader {
         DataVector[] data = new DataVector[0];
         try {
             DataInputStream iStream = new DataInputStream(new BufferedInputStream(new FileInputStream(dataPath)));
+
             //Placeholder skip
             iStream.readInt();
             int nItems = iStream.readInt();

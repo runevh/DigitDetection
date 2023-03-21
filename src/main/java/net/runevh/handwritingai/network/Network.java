@@ -19,37 +19,38 @@ public class Network {
 
     public Result evaluate(Vector input, Vector expected){
         Vector currentSignal = input;
+
         for(Layer layer : layers){
             currentSignal = layer.evaluate(currentSignal);
         }
+
+
         if(expected != null){
-            learnFrom(expected);
-            double cost = Cost.getTotal(expected, currentSignal);
+            learn(expected);
+            double cost = Cost.getTotalCost(expected, currentSignal);
             return new Result(currentSignal, cost);
         }
 
         return new Result(currentSignal);
     }
 
-    public void updateFromLearning() {
-        for (Layer l : layers)
-            if (l.hasPreLayer())
-                l.updateWeightsAndBias();
+    public void update() {
+        for (Layer l : layers) if (l.hasPreLayer()) l.updateWeightsAndBias();
     }
 
 
-    private void learnFrom(Vector expected){
+    private void learn(Vector expected){
         Layer layer = getLayers().lastElement();
 
         Vector dCost = Cost.getDerivative(expected, layer.getResult());
 
         while(layer.hasPreLayer()){
-            Vector dCostDI = layer.getActivation().dCostDInput(layer.getResult(), dCost);
-            Matrix dCostDWeight = dCostDI.outerProduct(layer.getPrev().getResult());
+            Vector dCostMD = layer.getActivation().multiplyByDerivative(layer.getResult(), dCost);
+            Matrix dCostMDWeight = dCostMD.outerProduct(layer.getPrev().getResult());
 
-            layer.addDWB(dCostDWeight, dCostDI);
+            layer.addDWB(dCostMDWeight, dCostMD);
 
-            dCost = layer.getWeights().multiply(dCostDI);
+            dCost = layer.getWeights().multiply(dCostMD);
             layer = layer.getPrev();
         }
     }

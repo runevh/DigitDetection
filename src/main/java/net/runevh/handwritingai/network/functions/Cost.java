@@ -7,7 +7,7 @@ public class Cost {
     /**
      * Cost function: C = ∑(y−exp)^2
      */
-    public static double getTotal(Vector expected, Vector actual){
+    public static double getTotalCost(Vector expected, Vector actual){
         Vector diff = actual.subtract(expected);
         return diff.dotProduct(diff);
     }
